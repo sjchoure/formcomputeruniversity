@@ -20,6 +20,9 @@ class HomeController < ApplicationController
     @friends = @user.all_following
     @users =  User.where.not(id: @friends.unshift(@user)).paginate(page: params[:page])
   end
+  
+  def event
+  end
 
   private
   def set_user

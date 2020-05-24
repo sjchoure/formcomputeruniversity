@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :mes
   resources :posts
   resources :comments, only: [:create, :destroy]
   devise_for :users
@@ -18,12 +19,11 @@ Rails.application.routes.draw do
     end
   end
 
-  authenticated :user do
-    root to: 'home#index', as: 'home'
-  end
-  unauthenticated :user do
-    root 'home#front'
-  end
+  
+  root 'home#front'
+  
+  get '/mes/new' => 'mes#new'
+  get '/registered' => 'mes#registered'
 
   match :follow, to: 'follows#create', as: :follow, via: :post
   match :unfollow, to: 'follows#destroy', as: :unfollow, via: :post
@@ -31,7 +31,10 @@ Rails.application.routes.draw do
   match :unlike, to: 'likes#destroy', as: :unlike, via: :post
   match :find_friends, to: 'home#find_friends', as: :find_friends, via: :get
   match :about, to: 'home#about', as: :about, via: :get
-
+  
+  match "/404", to: "errors#not_found", via: :all
+  match "/422", to: "errors#unacceptable", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

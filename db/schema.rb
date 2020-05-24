@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_06_13_183247) do
+ActiveRecord::Schema.define(version: 2020_05_24_003029) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -129,6 +129,13 @@ ActiveRecord::Schema.define(version: 2017_06_13_183247) do
     t.integer "sash_id"
     t.string "category", default: "default"
     t.index ["sash_id"], name: "index_merit_scores_on_sash_id"
+  end
+
+  create_table "mes", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|

@@ -1,0 +1,29 @@
+<%= form_with(model: me, local: true) do |form| %>
+
+  <% if me.errors.any? %>
+    <div class="alert alert-danger alert-dismissable">
+          <%= me.errors.full_messages.first %>
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control', autofocus: true, placeholder: 'Full name',:required => 'required'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: 'form-control', placeholder: 'email@example.com',:required => 'required' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Submit Form',class: 'btn btn-success'%>
+  </div>
+<% end %>
+
+
+
+
+
+
